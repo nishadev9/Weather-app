@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Weather</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+   <style>
+       /* General body styling */
+       body {
+           font-family: 'Arial', sans-serif;
+           background: linear-gradient(to bottom, #6DD5FA, #2980B9); /* Gradient background */
+           margin: 0;
+           padding: 0;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           height: 100vh;
+       }
+
+       /* Styling for the container */
+       .container {
+           background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+           padding: 30px;
+           border-radius: 15px;
+           box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+           text-align: center;
+           width: 300px;
+           max-width: 90%;
+       }
+
+       /* Styling for the heading */
+       h1 {
+           font-size: 1.8em;
+           margin-bottom: 10px;
+           color: #2c3e50;
+       }
+
+       /* Styling for date and day */
+       p {
+           font-size: 1em;
+           color: #34495e;
+           margin-bottom: 10px;
+       }
+
+       /* Styling for weather information */
+       .weather-info p {
+           font-size: 1.1em;
+           display: flex;
+           align-items: center;
+           justify-content: flex-start;
+           margin: 15px 0;
+           color: #2c3e50;
+       }
+
+       .weather-info p img {
+           width: 40px; /* Larger icons */
+           height: 40px;
+           margin-right: 10px; /* Space between icon and text */
+       }
+
+       /* Styling for the weather icon image */
+       .container img {
+           margin-top: 20px;
+           width: 100px;
+           height: 100px;
+       }
+
+       /* Styling for the button */
+       .history-button {
+           margin-top: 20px;
+           display: inline-block;
+           padding: 10px 20px;
+           background-color: #3498db;
+           color: white;
+           text-decoration: none;
+           border-radius: 5px;
+           font-size: 1em;
+           transition: background-color 0.3s ease;
+       }
+
+       .history-button:hover {
+           background-color: #2980b9;
+       }
+
+       /* Responsive adjustments */
+       @media (max-width: 600px) {
+           .container {
+               width: 95%;
+           }
+
+           h1 {
+               font-size: 1.5em;
+           }
+
+           .weather-info p {
+               font-size: 1em;
+           }
+       }
+   </style>
+</head>
+<body>
+   <div class="container">
+       <h1>Current Weather in {{ weather.city }}, {{ weather.country }}</h1>
+       <p>{{ weather.day }}, {{ weather.date }}</p>
+       <div class="weather-info">
+           <p><img src="https://img.icons8.com/ios-filled/50/000000/thermometer.png" alt="Thermometer Icon" /> Temperature: {{ weather.temperature }}°C</p>
+           <p><img src="https://img.icons8.com/ios-filled/50/000000/clouds.png" alt="Clouds Icon" /> Description: {{ weather.description }}</p>
+           <p><img src="https://img.icons8.com/ios-filled/50/000000/wind.png" alt="Wind Icon" /> Wind Speed: {{ weather.wind_speed }} m/s</p>
+           <p><img src="https://img.icons8.com/ios-filled/50/000000/barometer-gauge.png" alt="Pressure Icon" /> Pressure: {{ weather.pressure }} hPa</p>
+           <p><img src="https://img.icons8.com/ios-filled/50/000000/humidity.png" alt="Humidity Icon" /> Humidity: {{ weather.humidity }}%</p>
+           <p><img src="https://img.icons8.com/ios-filled/50/000000/sunrise.png" alt="Sunrise Icon" /> Sunrise: {{ weather.sunrise }}</p>
+           <p><img src="https://img.icons8.com/ios-filled/50/000000/sunset.png" alt="Sunset Icon" /> Sunset: {{ weather.sunset }}</p>
+       </div>
+       <img src="http://openweathermap.org/img/wn/{{ weather.icon }}.png" alt="Weather Icon">
+
+       <!-- Button to view weather search history -->
+       <a href="{{ url_for('history') }}" class="history-button">View Search History</a>
+   </div>
+</body>
+</html>

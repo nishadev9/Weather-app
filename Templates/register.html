@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <h2>Registration Page</h2>
+    <div class="login">
+        <form id="login" method="post" action="/add_user">
+            <label><b>User Name</b></label>
+            <input type="text" name="Uname" id="Uname" placeholder="Username">
+            
+            <label><b>Email Id</b></label>
+            <input type="text" name="Email" id="Email" placeholder="xyz@gmail.com">
+            
+            <label><b>Password</b></label>
+            <input type="password" name="Pass" id="Pass" placeholder="Password">
+            
+            <button class="button">Register</button>
+            
+            <label>Account already exists?</label>
+            <a href="/">Go Back</a>
+        </form>
+    </div>
+</body>
+</html>

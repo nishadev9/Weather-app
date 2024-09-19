@@ -1,0 +1,127 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #003366, #87CEFA); /* Dark blue to light blue gradient */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Styling for the container (Weather App form) */
+.container {
+    background-color: rgba(165, 197, 227, 0.1); /* Semi-transparent white background */
+    padding: 40px; /* Increased padding for a larger container */
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 400px; /* Width for weather app */
+    height: 300px; /* Height for weather app */
+}
+
+/* Styling for the login and register containers */
+.login, .register {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 30px; /* Padding for login/register */
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 350px; /* Consistent width for login/register */
+}
+
+/* Styling for the heading (Weather App) */
+h1 {
+    font-size: 2.5em;
+    color: #fff;
+    margin-top: 10px; /* Moved higher by reducing margin-top */
+}
+
+/* Styling for the headings (Login/Register) */
+h2 {
+    font-size: 2em;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* Styling for form elements */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+label {
+    font-size: 1.2em;
+    color: #333; /* Changed to a darker color for readability */
+}
+
+input[type="text"], input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Styling for the form button */
+button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #5a6f97;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #a07f9e;
+    transform: scale(1.05);
+}
+
+/* Button active effect */
+button:active {
+    background-color: #8a5d8e;
+    transform: scale(0.98);
+}
+
+/* Center alignment for the logout button */
+.center {
+    margin-top: 20px;
+}
+
+.center a {
+    text-decoration: none;
+}
+
+.center button {
+    background-color: #2e478e; /* Dark blue color for logout */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .login, .register {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+}
