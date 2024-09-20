@@ -1,6 +1,8 @@
+import bcrypt
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import mysql.connector
 import requests, datetime
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__, template_folder='Templates')
 
@@ -23,15 +25,16 @@ def login_validation():
     password = request.form.get('Pass')
     
     # Validate the login credentials
-    cursor.execute("SELECT * FROM login WHERE username = %s AND password = %s", (username, password))
+    cursor.execute("SELECT * FROM login WHERE username = %s", (username,))
     user = cursor.fetchone()
 
-    if user:
+    if user and bcrypt.checkpw(password.encode('utf-8'), user[2].encode('utf-8')):  # Assuming `user[2]` is the password field
         session['username'] = username  # Set username in session
         return redirect(url_for('home'))
     else:
         flash('Invalid username or password. Please try again.')
         return redirect(url_for('login'))
+
 
 @app.route('/home')
 def home():
@@ -46,7 +49,11 @@ def add_user():
     email = request.form.get('Email')
     password = request.form.get('Pass')
 
-    cursor.execute("INSERT INTO login (username, password, email) VALUES (%s, %s, %s)", (username, password, email))
+    # Hash the password
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+    # Store the hashed password in the database
+    cursor.execute("INSERT INTO login (username, password, email) VALUES (%s, %s, %s)", (username, hashed_password, email))
     conn.commit()
 
     flash('User registered successfully! Please log in.')
